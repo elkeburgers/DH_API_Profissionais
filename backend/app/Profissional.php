@@ -14,3 +14,5 @@ class Profissional extends Model
         return $this->hasMany('App\Tecnologia', 'profissionais_tecnologias', 'profissional_id', 'tecnologia_id');
     }
 }
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- formulario para cadstrar profissionais, para testar sem usar o Postman: -->
+    <form id="form">
+        <input type="text" name="name" id="name">
+        <input type="text" name="github" id="github">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <!-- javascript para enviar os dados do formulario acima: -->
+    <script>
+        let form = document.getElementById('form');
+        // para o submit enviar as informacoes:
+        // para nao atualizar a pagina, ou ir para outra pagina, usa o event.preventDefault. Se atualizar, perco os dados que o usuario acabou de cadastrar:
+        form.onsubmit = (event)=>{
+            event.preventDefault();
+            // para pegar as informacoes dos inputs:
+            let nameProf = document.getElementById('name').value;
+            let githubProf = document.getElementById('github').value;
+
+            // pegar essas informaceos e mandar para o laravel processar (fetch):
+            // primeiro vamos criar um objeto config para passar para o fetch:
+            // Obs.: em JS os : equivale a -> em PHP (para entender a linha body. Não pode ser name:name, senao o JS nao sabe quem eh quem, por isso criamos a variavel como nameProf).
+            let config = {
+                method:"POST", 
+                body:JSON.stringify({name:nameProf, github:githubProf})
+            }
+            // segundo, passa os parametros para o fetch, mandando para a url (localhost) e solicitando da config:
+            // console.log para imprimir na tela
+            fetch('http://localhost:8000/api/profissionais', config).then(function(resposta){
+                return resposta.json();
+            }).then(function(json){
+                console.log(json);
+            })
+        }
+    </script>
+
+</body>
+</html>
+

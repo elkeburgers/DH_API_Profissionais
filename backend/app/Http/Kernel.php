@@ -78,5 +78,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
+        // passo 2: registro do middleware criado:
+        \App\Http\Middleware\Cors::class,
     ];
 }

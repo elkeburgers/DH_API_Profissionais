@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/profissionais', 'ProfissionalController@listarProfissionais');
-Route::post('/profissonais', 'ProfissionalCOntroller@criarProfissional');
+Route::post('/profissionais', 'ProfissionalController@criarProfissional');

@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+          // passo 2: registro do middleware criado:
+          \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -78,7 +80,6 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
-        // passo 2: registro do middleware criado:
-        \App\Http\Middleware\Cors::class,
+      
     ];
 }

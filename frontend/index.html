@@ -32,9 +32,9 @@
             <div class="form-inline d-flex justify-content-center">
                 <label for="name" class="col-sm-1">Tecnologias:</label>
                 <select class="col-sm-4 form-control border border-success" id="tecnologia">
-                    <option value="1">Android</option>
-                    <option value="2">IOS</option>
-                    <option value="3">React</option>
+                    <option value="1" id="tecnologia">Android</option>
+                    <option value="2" id="tecnologia">IOS</option>
+                    <option value="3" id="tecnologia">React</option>
                 </select>
             </div><br>
 
@@ -64,7 +64,7 @@
                 method: "POST",
                 body: JSON.stringify({
                     name: nameProf,
-                    github: githubProf
+                    github: githubProf,
                     tecnologia: tecnoProf
                 })
             }

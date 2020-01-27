@@ -5,16 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
 <body>
-    <!-- formulario para cadstrar profissionais, para testar sem usar o Postman: -->
-    <form id="form">
-        <input type="text" name="name" id="name">
-        <input type="text" name="github" id="github">
-        <button type="submit">Enviar</button>
-    </form>
+    <header class="bg-success">
+        <h1 style="font-size:x-large; color: aliceblue" class="text-center p-4">API PROFISSIONAIS X TECNOLOGIAS</h1>
+    </header>
+
+    <main class="container text-center">
+        <!-- formulario para cadastrar profissionais, para testar sem usar o Postman: -->
+        <form id="form" class="mt-5">
+
+            <div class="form-group">
+                <label class="col-sm-2" for="name">Nome:</label>
+                <input class="col-sm-4 border border-success rounded-lg p-1" type="text" name="name" id="name">
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-2" for="name">Github:</label>
+                <input class="col-sm-4 border border-success rounded-lg p-1" type="text" name="github" id="github">
+            </div><br>
+            
+            <div class="form-inline d-flex justify-content-center">
+                <label for="name" class="col-sm-2">Tecnologias:</label>
+                <select class="col-sm-4 form-control border border-success" id="tecnologia">
+                    <option value="1">Android</option>
+                    <option value="2">IOS</option>
+                    <option value="3">React</option>
+                </select>
+            </div><br>
+
+            <button style="color: aliceblue; font-weight: bold;" class="bg-success p-3 rounded-lg" type="submit">Enviar</button>
+        </form>
+    </main>
 
     <!-- javascript para enviar os dados do formulario acima: -->
     <script>
@@ -26,31 +52,32 @@
             // para pegar as informacoes dos inputs:
             let nameProf = document.getElementById('name').value;
             let githubProf = document.getElementById('github').value;
+            let tecnoProf = document.getElementById('tecnologia').value;
 
             // pegar essas informaceos e mandar para o laravel processar (fetch):
             // primeiro vamos criar um objeto config para passar para o fetch:
             // Obs.: em JS os : equivale a -> em PHP (para entender a linha body. Não pode ser name:name, senao o JS nao sabe quem eh quem, por isso criamos a variavel como nameProf).
             let config = {
-                headers:{
-                    "Content-Type":"application/json"
+                headers: {
+                    "Content-Type": "application/json"
                 },
                 method: "POST",
                 body: JSON.stringify({
                     name: nameProf,
                     github: githubProf
+                    tecnologia: tecnoProf
                 })
             }
             // segundo, passa os parametros para o fetch, mandando para a url (localhost) e solicitando da config:
             // console.log para imprimir na tela
-            fetch('http://localhost:8000/api/profissionais', config).then(function(resposta){
+            fetch('http://localhost:8000/api/profissionais', config).then(function (resposta) {
                 return resposta.json();
             }).then(function (json) {
                 console.log(json);
-            }).catch(function(error){
+            }).catch(function (error) {
                 console.log(error)
             })
         }
-
     </script>
 
 </body>
